@@ -18,7 +18,7 @@
       align-items: center;
       justify-content: center;
       padding: 16px;
-      background: radial-gradient(circle at top, #ffe5f1 0, #f8f5ff 40%, #dff3ff 100%);
+      background: linear-gradient(180deg, #ffe5f4 0%, #ffd2ea 35%, #ffe9f6 70%, #ffe5f1 100%);
     }
 
     .card {
@@ -38,10 +38,10 @@
     .card::before {
       content: "";
       position: absolute;
-      width: 220px;
-      height: 220px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
-      background: radial-gradient(circle, #ffd5ec80, transparent 70%);
+      background: radial-gradient(circle, #ffd5ec90, transparent 70%);
       top: -80px;
       right: -40px;
       z-index: -1;
@@ -50,14 +50,25 @@
     .card::after {
       content: "";
       position: absolute;
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      background: radial-gradient(circle, #dff4ff80, transparent 70%);
+      background: radial-gradient(circle, #ffe3ff90, transparent 70%);
       bottom: -60px;
       left: -30px;
       z-index: -1;
     }
+
+    .flower {
+      position: absolute;
+      font-size: 1.8rem;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .flower.f1 { top: 18px; left: 20px; }
+    .flower.f2 { top: 40px; right: 26px; }
+    .flower.f3 { bottom: 40px; left: 40px; }
+    .flower.f4 { bottom: 12px; right: 22px; }
 
     .badge {
       display: inline-flex;
@@ -115,7 +126,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-image: url("elizabeth.jpg"); /* Sube una foto con este nombre al repo */
+      background-image: url("elizabeth.jpg"); /* sube una foto con este nombre al repo */
     }
 
     .countdown-title {
@@ -130,7 +141,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .time-box {
@@ -291,6 +302,12 @@
 </head>
 <body>
   <div class="card">
+    <!-- flores decorativas -->
+    <div class="flower f1">🌸</div>
+    <div class="flower f2">🌷</div>
+    <div class="flower f3">🌺</div>
+    <div class="flower f4">🌼</div>
+
     <div class="badge">
       <span>✨</span> Te invitamos a celebrar
     </div>
@@ -303,7 +320,7 @@
       Será un honor que nos acompañes.
     </p>
 
-    <!-- FOTO: sube una foto como "elizabeth.jpg" al repo para que se vea aquí -->
+    <!-- FOTO -->
     <div class="avatar-wrapper">
       <div class="avatar"></div>
     </div>
@@ -358,7 +375,8 @@
         <span>👨‍👩‍👧</span> Padrinos
       </div>
       <div class="padrinos-list">
-        <span><strong>Padrinos de bautizo:</strong> Marco Antonio Villarino y Flor Alejandra Viloria Perez</span>
+        <span><strong>Padrino de bautizo:</strong> Marco Antonio Villarino</span>
+        <span><strong>Madrina de bautizo:</strong> Flor Alejandra Viloria Perez</span>
       </div>
     </div>
 
@@ -372,7 +390,7 @@
 
     <!-- BOTONES -->
     <div class="buttons">
-      <!-- Link real de Google Maps -->
+      <!-- Pega aquí tu link de Google Maps -->
       <a
         class="btn secondary"
         href="https://maps.app.goo.gl/TU_LINK_DE_GOOGLE_MAPS_AQUI"
@@ -393,24 +411,38 @@
       </a>
     </div>
 
-    <p class="footer-text">
-      Faltan <span class="highlight">días, horas, minutos y segundos</span> para
-      celebrar juntos a Elizabeth 🥳
+    <p class="footer-text" id="footer-text">
+      Faltan
+      <span class="highlight">
+        <span id="f-days">0</span> días,
+        <span id="f-hours">00</span> horas,
+        <span id="f-minutes">00</span> minutos y
+        <span id="f-seconds">00</span> segundos
+      </span>
+      para celebrar juntos a Elizabeth 🥳
     </p>
+
     <p class="note">
       Si no puedes asistir, tu cariño y tus oraciones son igual de importantes para nosotros.
     </p>
   </div>
 
   <script>
-    // Cuenta regresiva hasta la hora del bautizo (puedes cambiar a 16:00 si quieres que sea al salón)
-    // Formato: "AAAA-MM-DDTHH:MM:SS"
-    const eventDate = new Date("2024-12-14T12:00:00");
+    // 🔧 CONFIGURA AQUÍ LA FECHA Y HORA DEL EVENTO
+    // Pon una fecha FUTURA para que el contador se vea moviéndose
+    // Ejemplo de prueba: 14 diciembre 2025 a las 12:00
+    const eventDate = new Date("2025-12-14T12:00:00");
 
     const daysSpan = document.getElementById("days");
     const hoursSpan = document.getElementById("hours");
     const minutesSpan = document.getElementById("minutes");
     const secondsSpan = document.getElementById("seconds");
+
+    const fDaysSpan = document.getElementById("f-days");
+    const fHoursSpan = document.getElementById("f-hours");
+    const fMinutesSpan = document.getElementById("f-minutes");
+    const fSecondsSpan = document.getElementById("f-seconds");
+    const footerText = document.getElementById("footer-text");
     const countdownDiv = document.getElementById("countdown");
 
     function updateCountdown() {
@@ -419,14 +451,16 @@
 
       if (distance <= 0) {
         daysSpan.textContent = "0";
-        hoursSpan.textContent = "0";
-        minutesSpan.textContent = "0";
-        secondsSpan.textContent = "0";
-        countdownDiv.insertAdjacentHTML(
-          "afterend",
-          "<p class='footer-text'><span class='highlight'>¡Hoy es el gran día de Elizabeth! 🎉</span></p>"
-        );
-        clearInterval(intervalId);
+        hoursSpan.textContent = "00";
+        minutesSpan.textContent = "00";
+        secondsSpan.textContent = "00";
+
+        fDaysSpan.textContent = "0";
+        fHoursSpan.textContent = "00";
+        fMinutesSpan.textContent = "00";
+        fSecondsSpan.textContent = "00";
+
+        footerText.innerHTML = "<span class='highlight'>¡Hoy es el gran día de Elizabeth! 🎉</span>";
         return;
       }
 
@@ -443,9 +477,14 @@
       hoursSpan.textContent = hours.toString().padStart(2, "0");
       minutesSpan.textContent = minutes.toString().padStart(2, "0");
       secondsSpan.textContent = seconds.toString().padStart(2, "0");
+
+      fDaysSpan.textContent = days;
+      fHoursSpan.textContent = hours.toString().padStart(2, "0");
+      fMinutesSpan.textContent = minutes.toString().padStart(2, "0");
+      fSecondsSpan.textContent = seconds.toString().padStart(2, "0");
     }
 
-    const intervalId = setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
 </body>
