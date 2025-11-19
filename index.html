@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bautizo y Cumpleaños de Elizabeth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffe5f1, #e0f3ff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .card {
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 24px 20px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      color: #222;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: #555;
+    }
+
+    .name {
+      font-weight: 700;
+      color: #d63384;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      color: #444;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .time-box {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 8px 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .time-box small {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-top: 2px;
+      color: #777;
+    }
+
+    .info {
+      font-size: 0.9rem;
+      text-align: left;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    .info p {
+      margin-bottom: 6px;
+    }
+
+    .info strong {
+      color: #111;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff75c3, #ffa647);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    }
+
+    .footer-text {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: #666;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: #d63384;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px 16px;
+      }
+      h1 {
+        font-size: 1.4rem;
+      }
+      .countdown {
+        gap: 6px;
+      }
+      .time-box span {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Bautizo y Cumpleaños</h1>
+    <h2>de <span class="name">Elizabeth</span> 💕</h2>
+
+    <p class="subtitle">
+      Nos encantaría que nos acompañes en este día tan especial.
+    </p>
+
+    <!-- CONTADOR REGRESIVO -->
+    <div id="countdown" class="countdown">
+      <div class="time-box">
+        <span id="days">--</span>
+        <small>Días</small>
+      </div>
+      <div class="time-box">
+        <span id="hours">--</span>
+        <small>Horas</small>
+      </div>
+      <div class="time-box">
+        <span id="minutes">--</span>
+        <small>Minutos</small>
+      </div>
+      <div class="time-box">
+        <span id="seconds">--</span>
+        <small>Segundos</small>
+      </div>
+    </div>
+
+    <!-- INFORMACIÓN DEL EVENTO -->
+    <div class="info">
+      <!-- 🔽 CAMBIA ESTOS DATOS POR LOS REALES -->
+      <p>📅 <strong>Fecha:</strong> Sábado 10 de enero de 2026</p>
+      <p>🕒 <strong>Hora de la ceremonia:</strong> 1:00 p.m.</p>
+      <p>🕊 <strong>Iglesia:</strong> Parroquia de ejemplo</p>
+      <p>🎉 <strong>Recepción:</strong> Salón Los Arcos, Orizaba</p>
+      <!-- 🔽 Pega aquí tu enlace real de Google Maps -->
+      <a
+        class="btn"
+        href="https://maps.app.goo.gl/TU_LINK_DE_GOOGLE_MAPS_AQUI"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ver ubicación en Google Maps
+      </a>
+    </div>
+
+    <p class="footer-text">
+      Faltan
+      <span class="highlight">días, horas, minutos y segundos</span>
+      para celebrar juntos 🥳
+    </p>
+  </div>
+
+  <script>
+    // 🔧 CONFIGURA AQUÍ LA FECHA Y HORA DEL EVENTO
+    // Formato: "AAAA-MM-DDTHH:MM:SS"
+    // Ejemplo: 2026-01-10 a la 1:00 p.m.
+    const eventDate = new Date("2026-01-10T13:00:00");
+
+    const daysSpan = document.getElementById("days");
+    const hoursSpan = document.getElementById("hours");
+    const minutesSpan = document.getElementById("minutes");
+    const secondsSpan = document.getElementById("seconds");
+    const countdownDiv = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = eventDate.getTime() - now;
+
+      if (distance <= 0) {
+        // Si ya llegó el día
+        daysSpan.textContent = "0";
+        hoursSpan.textContent = "0";
+        minutesSpan.textContent = "0";
+        secondsSpan.textContent = "0";
+        countdownDiv.insertAdjacentHTML(
+          "afterend",
+          "<p class='footer-text'><span class='highlight'>¡Hoy es el gran día de Elizabeth! 🎉</span></p>"
+        );
+        clearInterval(intervalId);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysSpan.textContent = days;
+      hoursSpan.textContent = hours.toString().padStart(2, "0");
+      minutesSpan.textContent = minutes.toString().padStart(2, "0");
+      secondsSpan.textContent = seconds.toString().padStart(2, "0");
+    }
+
+    const intervalId = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
