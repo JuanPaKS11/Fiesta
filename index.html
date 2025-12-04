@@ -33,7 +33,7 @@
       padding: 18px;
     }
 
-    /* Tarjeta ahora TRANSPARENTE */
+    /* Tarjeta transparente */
     .card {
       background: transparent;
       border-radius: 26px;
@@ -85,25 +85,6 @@
       color: #444;
     }
 
-    /* FOTO / AVATAR */
-    .avatar-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 3px solid #ffe0f2;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-image: url("elizabeth.jpg"); /* sube esta foto al repo si quieres que se vea */
-    }
-
     .countdown-title {
       font-size: 0.85rem;
       letter-spacing: 0.06em;
@@ -116,14 +97,17 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      padding: 10px 8px;
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.45);
+      background: transparent;
     }
 
     .time-box {
-      /* sin tarjeta blanca */
       background: transparent;
       border-radius: 14px;
-      padding: 8px 4px;
+      padding: 4px 2px;
     }
 
     .time-box span {
@@ -142,14 +126,14 @@
       color: #555;
     }
 
-    /* Secciones transparentes */
+    /* Secciones en cuadros con línea negra */
     .section {
       background: transparent;
       border-radius: 18px;
-      padding: 12px 4px;
-      margin-bottom: 6px;
+      padding: 10px 8px;
+      margin-bottom: 8px;
       text-align: left;
-      border: none;
+      border: 1px solid rgba(0, 0, 0, 0.45);
     }
 
     .section-header {
@@ -180,7 +164,7 @@
       display: grid;
       grid-template-columns: 1.1fr 1.1fr;
       gap: 8px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .pill {
@@ -209,8 +193,12 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 6px;
       margin-bottom: 4px;
+      padding: 10px 8px;
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.45);
+      background: transparent;
     }
 
     .btn {
@@ -242,7 +230,7 @@
     }
 
     .footer-text {
-      margin-top: 8px;
+      margin-top: 2px;
       font-size: 0.78rem;
       color: #666;
     }
@@ -271,10 +259,6 @@
       .two-columns {
         grid-template-columns: 1fr;
       }
-      .avatar {
-        width: 96px;
-        height: 96px;
-      }
     }
   </style>
 </head>
@@ -293,14 +277,9 @@
         Será un honor que nos acompañes.
       </p>
 
-      <!-- FOTO -->
-      <div class="avatar-wrapper">
-        <div class="avatar"></div>
-      </div>
-
+      <!-- CONTADOR REGRESIVO -->
       <p class="countdown-title">Cuenta regresiva para el gran día</p>
 
-      <!-- CONTADOR REGRESIVO -->
       <div id="countdown" class="countdown">
         <div class="time-box">
           <span id="days">--</span>
@@ -320,7 +299,7 @@
         </div>
       </div>
 
-      <!-- DETALLES -->
+      <!-- DETALLES PRINCIPALES -->
       <div class="two-columns">
         <div class="section">
           <div class="section-header">
@@ -343,6 +322,7 @@
         </div>
       </div>
 
+      <!-- PADRINOS -->
       <div class="section">
         <div class="section-header">
           <span>👨‍👩‍👧</span> Padrinos
@@ -353,17 +333,27 @@
         </div>
       </div>
 
+      <!-- SUGERENCIA DE REGALO -->
       <div class="section">
         <div class="section-header">
-          <span>👗</span> Detalles
+          <span>🎁</span> Un pequeño detalle
         </div>
-        <p><strong>Código de vestimenta:</strong> Formal / colores claros.</p>
-        <p><strong>Niños:</strong> ¡Bienvenidos! 🧸</p>
+        <p>
+          Aunque apenas cumpliré un año, actualmente uso ropa en
+          <strong>talla 24–36 meses / talla 3</strong> y calzo del
+          <strong>número 13</strong>.
+        </p>
+        <p>
+          Si desean tener un detalle conmigo, también pueden considerarlo
+          en <strong>efectivo</strong>, según sea su preferencia.
+        </p>
+        <p>
+          Lo más importante para mí es contar con su compañía en este día tan especial. 🤍
+        </p>
       </div>
 
       <!-- BOTONES -->
       <div class="buttons">
-        <!-- Pega aquí tu link real de Google Maps -->
         <a
           class="btn secondary"
           href="https://maps.app.goo.gl/6jaBc6Ps9RsUnYX96"
@@ -373,7 +363,6 @@
           <span class="icon">📍</span> Ver ubicación en Google Maps
         </a>
 
-        <!-- WhatsApp con tu número -->
         <a
           class="btn"
           href="https://wa.me/5212722296996?text=Hola%2C%20quiero%20confirmar%20mi%20asistencia%20al%20bautizo%20y%20cumplea%C3%B1os%20de%20Elizabeth"
@@ -384,26 +373,28 @@
         </a>
       </div>
 
-      <p class="footer-text" id="footer-text">
-        Faltan
-        <span class="highlight">
-          <span id="f-days">0</span> días,
-          <span id="f-hours">00</span> horas,
-          <span id="f-minutes">00</span> minutos y
-          <span id="f-seconds">00</span> segundos
-        </span>
-        para celebrar juntos a Elizabeth 🥳
-      </p>
+      <!-- TEXTO FINAL EN SU PROPIO CUADRO -->
+      <div class="section">
+        <p class="footer-text" id="footer-text">
+          Faltan
+          <span class="highlight">
+            <span id="f-days">0</span> días,
+            <span id="f-hours">00</span> horas,
+            <span id="f-minutes">00</span> minutos y
+            <span id="f-seconds">00</span> segundos
+          </span>
+          para celebrar juntos a Elizabeth 🥳
+        </p>
 
-      <p class="note">
-        Si no puedes asistir, tu cariño y tus oraciones son igual de importantes para nosotros.
-      </p>
+        <p class="note">
+          Si no puedes asistir, tu cariño y tus oraciones son igual de importantes para nosotros.
+        </p>
+      </div>
     </div>
   </div>
 
   <script>
     // FECHA Y HORA DEL EVENTO
-    
     const eventDate = new Date("2025-12-14T10:00:00");
 
     const daysSpan = document.getElementById("days");
